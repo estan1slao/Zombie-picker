@@ -81,3 +81,5 @@ fmod_editor.log
 .idea
 .vscode
 .vsconfig
+TestScene.unity
+TestScene.unity.meta
