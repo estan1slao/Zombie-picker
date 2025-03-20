@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float maxHealth;
+    public float maxHealth = 10;
     public float currentHealth; 
     
     [Header("Movement Settings")]
@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        currentHealth = maxHealth;
     }
     
     public void Follow(Vector3 targetPosition, List<Player> allClones)
@@ -44,5 +45,19 @@ public class Player : MonoBehaviour
         
         var newPosition = transform.position + finalDirection * (followSpeed * Time.deltaTime);
         rb.MovePosition(newPosition);
+    }
+    
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject);
     }
 }

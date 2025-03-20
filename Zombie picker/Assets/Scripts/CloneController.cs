@@ -79,9 +79,14 @@ public class CloneController : MonoBehaviour
 
     private void MoveClones()
     {
+        activeClones.RemoveAll(clone => clone == null);
+
         foreach (var clone in activeClones)
         {
-            clone.Follow(targetPosition, activeClones);
+            if (clone != null)
+            {
+                clone.Follow(targetPosition, activeClones);
+            }
         }
     }
     
