@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
@@ -7,10 +8,13 @@ using Random = UnityEngine.Random;
 public class CloneController : MonoBehaviour
 {
     [Header("Settings")] 
-    [SerializeField] private GameObject clonePrefab;
-    [SerializeField] private float cloneSpacing = 1.5f;
-    [SerializeField] private float roadWidth = 10f;
-    [SerializeField] private float distanceFromCamera = 10f;
+    public GameObject clonePrefab;
+    public float cloneSpacing = 1.5f;
+    public float roadWidth = 10f;
+    public float distanceFromCamera = 10f;
+    
+    [Header("Text")]
+    public TextMeshProUGUI hpText;
     
     private readonly List<Player> activeClones = new();
     
@@ -40,7 +44,6 @@ public class CloneController : MonoBehaviour
         var worldPosition = mainCamera.ScreenToWorldPoint(screenPos);
         
         var clampedZ = Mathf.Clamp(worldPosition.z, -roadWidth / 2, roadWidth / 2);
-        // var targetZ = Mathf.Lerp(transform.position.z, clampedZ, speed * Time.deltaTime);
                 
         targetPosition = new Vector3(worldPosition.x, worldPosition.y, clampedZ);
     }
@@ -69,14 +72,11 @@ public class CloneController : MonoBehaviour
         
         var clone = Instantiate(clonePrefab, position, Quaternion.identity).GetComponent<Player>();
         activeClones.Add(clone);
+        
+        clone.OnHealthChanged += UpdateTotalHealth;
+        UpdateTotalHealth();
     }
-
-    public void RemoveClone(Player clone)
-    {
-        activeClones.Remove(clone);
-        Destroy(clone.gameObject);
-    }
-
+    
     private void MoveClones()
     {
         activeClones.RemoveAll(clone => clone == null);
@@ -88,6 +88,11 @@ public class CloneController : MonoBehaviour
                 clone.Follow(targetPosition, activeClones);
             }
         }
+    }
+
+    private void UpdateTotalHealth()
+    {
+        hpText.text = $"Total HP: {GetTotalHealth()}%";
     }
     
     private float GetTotalHealth() => activeClones.Sum(clone => clone.currentHealth);

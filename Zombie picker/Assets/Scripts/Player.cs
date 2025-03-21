@@ -1,9 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float maxHealth = 10;
+    [Header("Health")]
+    public float maxHealth = 100;
     public float currentHealth; 
     
     [Header("Movement Settings")]
@@ -12,11 +14,17 @@ public class Player : MonoBehaviour
     public float separationWeight = 2f;
     
     private Rigidbody rb;
+    
+    public event Action OnHealthChanged;
+
+    private void Awake()
+    {
+        currentHealth = maxHealth;
+    }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        currentHealth = maxHealth;
     }
     
     public void Follow(Vector3 targetPosition, List<Player> allClones)
@@ -50,6 +58,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
+        OnHealthChanged?.Invoke();
         if (currentHealth <= 0)
         {
             Die();
