@@ -2,32 +2,41 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+[RequireComponent(typeof(BulletController))]
+public class Clone : MonoBehaviour
 {
+    [NonSerialized] public float CurrentHealth; 
+    
     [Header("Health")]
     public float maxHealth = 100;
-    public float currentHealth; 
     
     [Header("Movement Settings")]
     public float followSpeed = 5f;
     public float separationDistance = 1f;
     public float separationWeight = 2f;
     
+    [Header("Gun")]
+    public GunData currentGun;
+    
     private Rigidbody rb;
+    private BulletController bulletController;
     
     public event Action OnHealthChanged;
 
     private void Awake()
     {
-        currentHealth = maxHealth;
+        CurrentHealth = maxHealth;
     }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        bulletController = GetComponent<BulletController>();
+        
+        InvokeRepeating(nameof(Shoot), 0f, currentGun.fireRate);
     }
     
-    public void Follow(Vector3 targetPosition, List<Player> allClones)
+    public void Follow(Vector3 targetPosition, List<Clone> allClones)
     {
         var cohesionDirection = (targetPosition - transform.position).normalized;
 
@@ -57,9 +66,9 @@ public class Player : MonoBehaviour
     
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
+        CurrentHealth -= damage;
         OnHealthChanged?.Invoke();
-        if (currentHealth <= 0)
+        if (CurrentHealth <= 0)
         {
             Die();
         }
@@ -68,5 +77,15 @@ public class Player : MonoBehaviour
     private void Die()
     {
         Destroy(gameObject);
+    }
+    
+    private void Shoot()
+    {
+        bulletController.Shoot(currentGun, transform.position);
+    }
+
+    public void ChangeWeapon(GunData newGun)
+    {
+        currentGun = newGun;
     }
 }

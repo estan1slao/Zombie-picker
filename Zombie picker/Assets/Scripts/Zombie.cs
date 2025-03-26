@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -42,7 +43,7 @@ public class Zombie : MonoBehaviour
             }
         }
     }
-
+    
     private void MoveTowardsTarget()
     {
         float distance = Vector3.Distance(transform.position, target.position);
@@ -92,15 +93,15 @@ public class Zombie : MonoBehaviour
 
         while (target != null && Vector3.Distance(transform.position, target.position) <= attackDistance)
         {
-            Player player = target.GetComponent<Player>();
-            if (player != null)
+            Clone clone = target.GetComponent<Clone>();
+            if (clone != null)
             {
-                player.TakeDamage(damage);
+                clone.TakeDamage(damage);
             }
 
             yield return new WaitForSeconds(attackRate);
 
-            if (target != null && target.GetComponent<Player>().currentHealth <= 0)
+            if (target != null && target.GetComponent<Clone>().CurrentHealth <= 0)
             {
                 target = null; // Сброс цели
                 FindNearestTarget(); // Ищем нового игрока
@@ -110,7 +111,7 @@ public class Zombie : MonoBehaviour
         isAttacking = false;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)

@@ -16,7 +16,7 @@ public class CloneController : MonoBehaviour
     [Header("Text")]
     public TextMeshProUGUI hpText;
     
-    private readonly List<Player> activeClones = new();
+    private readonly List<Clone> activeClones = new();
     
     private bool isMouseHolding;
     private Camera mainCamera;
@@ -70,7 +70,7 @@ public class CloneController : MonoBehaviour
             );
         }
         
-        var clone = Instantiate(clonePrefab, position, Quaternion.identity).GetComponent<Player>();
+        var clone = Instantiate(clonePrefab, position, Quaternion.identity).GetComponent<Clone>();
         activeClones.Add(clone);
         
         clone.OnHealthChanged += UpdateTotalHealth;
@@ -95,5 +95,5 @@ public class CloneController : MonoBehaviour
         hpText.text = $"Total HP: {GetTotalHealth()}%";
     }
     
-    private float GetTotalHealth() => activeClones.Sum(clone => clone.currentHealth);
+    private float GetTotalHealth() => activeClones.Sum(clone => clone.CurrentHealth);
 }
