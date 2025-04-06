@@ -17,5 +17,5 @@ MonoBehaviour:
   fireRate: 8
   lifeTime: 5
   gunPrefab: {fileID: 1095254202041702, guid: 6273e2936e9d6a24e9f64c7c70d6bd19, type: 3}
-  localPosition: {x: 0.019183578, y: -0.02897764, z: -0.018943151}
-  localRotation: {x: 0, y: 0, z: 0}
+  localPosition: {x: -0.019, y: -0.048, z: -0.016}
+  localRotation: {x: 75.830795, y: 205.70496, z: 284.87332}
