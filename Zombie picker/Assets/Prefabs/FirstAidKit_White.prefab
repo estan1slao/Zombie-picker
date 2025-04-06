@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9090630262107930881}
   - component: {fileID: 3261585399519066648}
   - component: {fileID: -5172378129029415072}
+  - component: {fileID: 8767396012061977019}
   m_Layer: 0
   m_Name: FirstAidKit_White
   m_TagString: FirstAidKit
@@ -116,6 +117,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce49c3f5fc5b4af29c40b13729ac9a2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8767396012061977019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7355713013926475229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96348837d678499a83738f789a98f07d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
