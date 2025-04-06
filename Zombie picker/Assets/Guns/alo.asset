@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d68f1f5ee94650bd02c9ccc8bebe00, type: 3}
   m_Name: alo
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 10
   speed: 10
   fireRate: 2
   lifeTime: 5
