@@ -45,10 +45,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e496af4bb1b4ebabc58b73325f73294, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clonePrefab: {fileID: 7365180852036643984, guid: 4b62e323ba8578848940f04f2d28414d, type: 3}
+  clonePrefab: {fileID: 1203074335645009868, guid: 735e1c0461b77ca4287ccc541a8fbf2d, type: 3}
   cloneSpacing: 1.5
   roadWidth: 20
   distanceFromCamera: 5
+  hpText: {fileID: 0}
 --- !u!114 &8431662532319418191
 MonoBehaviour:
   m_ObjectHideFlags: 0

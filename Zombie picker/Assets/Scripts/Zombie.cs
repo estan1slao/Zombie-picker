@@ -16,10 +16,12 @@ public class Zombie : MonoBehaviour
     private bool isAttacking = false;
     private Rigidbody rb;
     private Vector3 forwardDirection;
+    private Animator animator;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
         forwardDirection = transform.forward; // Изначально движемся вперед
         FindNearestTarget();
     }
@@ -90,9 +92,11 @@ public class Zombie : MonoBehaviour
     private IEnumerator Attack()
     {
         isAttacking = true;
-
         while (target != null && Vector3.Distance(transform.position, target.position) <= attackDistance)
         {
+            animator.SetTrigger("Attack");
+            yield return new WaitForSeconds(attackRate);
+            
             Clone clone = target.GetComponent<Clone>();
             if (clone != null)
             {

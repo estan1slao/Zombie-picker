@@ -58,7 +58,7 @@ public class CloneController : MonoBehaviour
     
     public void SpawnClone()
     {
-        var position = Vector3.up;
+        var position = Vector3.zero;
         
         if (activeClones.Count > 1)
         {
@@ -70,7 +70,7 @@ public class CloneController : MonoBehaviour
             );
         }
         
-        var clone = Instantiate(clonePrefab, position, Quaternion.identity).GetComponent<Clone>();
+        var clone = Instantiate(clonePrefab, position, Quaternion.Euler(0, -90, 0)).GetComponent<Clone>();
         activeClones.Add(clone);
         
         clone.OnHealthChanged += UpdateTotalHealth;
