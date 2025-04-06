@@ -4,6 +4,8 @@ public class MoveForward : MonoBehaviour
 {
     public float speed = 5f;
     
+    public Vector3 direction = Vector3.forward;
+    
     private void Update()
     {
         Move();
@@ -11,6 +13,6 @@ public class MoveForward : MonoBehaviour
     
     private void Move()
     {
-        transform.Translate(Vector3.forward * (speed * Time.deltaTime));
+        transform.Translate(direction * (speed * Time.deltaTime));
     }
 }
