@@ -4,14 +4,30 @@ using UnityEngine.Events;
 
 public class Barrel : MonoBehaviour
 {
+    [NonSerialized] private int hits = 10;
+    
     public int maxHits = 10;
-    public int hits = 10;
+    public float damage = 100f;
 
-    public UnityEvent unityEvent;
+    public UnityEvent breakEvent;
     
     private void Start()
     {
         hits = maxHits;
+    }
+
+    private void Update()
+    {
+        if (transform.position.x >= 20)
+            Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<Clone>().TakeDamage(damage);
+        }
     }
 
     public void TakeDamage()
@@ -24,6 +40,6 @@ public class Barrel : MonoBehaviour
 
     private void Break()
     {
-        unityEvent.Invoke();
+        breakEvent.Invoke();
     }
 }
