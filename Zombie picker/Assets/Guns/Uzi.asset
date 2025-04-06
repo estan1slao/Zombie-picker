@@ -16,3 +16,6 @@ MonoBehaviour:
   speed: 10
   fireRate: 8
   lifeTime: 5
+  gunPrefab: {fileID: 1095254202041702, guid: 6273e2936e9d6a24e9f64c7c70d6bd19, type: 3}
+  localPosition: {x: 0.019183578, y: -0.02897764, z: -0.018943151}
+  localRotation: {x: 0, y: 0, z: 0}
