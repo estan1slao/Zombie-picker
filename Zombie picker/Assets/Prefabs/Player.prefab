@@ -188,7 +188,9 @@ MonoBehaviour:
   followSpeed: 75
   separationDistance: 1.5
   separationWeight: 0.2
-  currentGun: {fileID: 11400000, guid: 81431579c7471b44286b98adedc0efe9, type: 2}
+  currentGun: {fileID: 11400000, guid: 921cde3362635e744aa9845f6725f11c, type: 2}
+  weaponSlot: {fileID: 9114524242161555382}
+  pistol: {fileID: 11400000, guid: 921cde3362635e744aa9845f6725f11c, type: 2}
 --- !u!114 &8416208482297180728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,3 +204,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 470225648245533322, guid: 4a7df5201dcd51b4aa5b3f6e915cea31, type: 3}
+--- !u!4 &9114524242161555382 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7065602371345607979, guid: 72056e7acb885624b8d9ac4142eb1a79, type: 3}
+  m_PrefabInstance: {fileID: 2050057477618121373}
+  m_PrefabAsset: {fileID: 0}

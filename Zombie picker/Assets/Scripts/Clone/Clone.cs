@@ -21,6 +21,12 @@ public class Clone : MonoBehaviour
     private Rigidbody rb;
     private BulletController bulletController;
     
+    [Header("Gun Visuals")]
+    public Transform weaponSlot;
+    private GameObject currentGunVisual;
+
+    public GunData pistol;
+    
     public event Action OnHealthChanged;
     public event Action OnHealTriggered;
 
@@ -33,6 +39,8 @@ public class Clone : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         bulletController = GetComponent<BulletController>();
+
+        ChangeWeapon(pistol);
         
         if (currentGun.fireRate == 0) return;
         
@@ -103,5 +111,21 @@ public class Clone : MonoBehaviour
     public void ChangeWeapon(GunData newGun)
     {
         currentGun = newGun;
+
+        // Удаляем старое оружие, если было
+        if (currentGunVisual != null)
+            Destroy(currentGunVisual);
+
+        // Спавним новое визуальное оружие
+        if (currentGun.gunPrefab != null && weaponSlot != null)
+        {
+            currentGunVisual = Instantiate(currentGun.gunPrefab, weaponSlot);
+
+            // Задаём локальную позицию и поворот из GunData
+            currentGunVisual.transform.localPosition = currentGun.localPosition;
+            currentGunVisual.transform.localEulerAngles = currentGun.localRotation;
+            currentGunVisual.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        }
     }
+
 }

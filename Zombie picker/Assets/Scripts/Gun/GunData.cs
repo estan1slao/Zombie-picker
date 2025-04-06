@@ -7,4 +7,9 @@ public class GunData : ScriptableObject
     public float speed;
     public float fireRate;
     public float lifeTime;
+
+    [Header("Visual")]
+    public GameObject gunPrefab;
+    public Vector3 localPosition;
+    public Vector3 localRotation;
 }
