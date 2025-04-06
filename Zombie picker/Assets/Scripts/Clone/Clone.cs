@@ -22,6 +22,7 @@ public class Clone : MonoBehaviour
     private BulletController bulletController;
     
     public event Action OnHealthChanged;
+    public event Action OnHealTriggered;
 
     private void Awake()
     {
@@ -33,9 +34,20 @@ public class Clone : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         bulletController = GetComponent<BulletController>();
         
-        InvokeRepeating(nameof(Shoot), 0f, currentGun.fireRate);
+        if (currentGun.fireRate == 0) return;
+        
+        InvokeRepeating(nameof(Shoot), 0f, 1 / currentGun.fireRate);
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("FirstAidKit"))
+        {
+            OnHealTriggered?.Invoke();
+            Destroy(other.gameObject);
+        }
+    }
+
     public void Follow(Vector3 targetPosition, List<Clone> allClones)
     {
         var cohesionDirection = (targetPosition - transform.position).normalized;
@@ -68,12 +80,16 @@ public class Clone : MonoBehaviour
     {
         CurrentHealth -= damage;
         OnHealthChanged?.Invoke();
-        if (CurrentHealth <= 0)
-        {
+        if (CurrentHealth <= 0) 
             Die();
-        }
     }
 
+    public void Heal()
+    {
+        CurrentHealth = 100;
+        OnHealthChanged?.Invoke();
+    }
+    
     private void Die()
     {
         Destroy(gameObject);

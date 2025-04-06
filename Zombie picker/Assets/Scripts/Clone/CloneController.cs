@@ -74,6 +74,7 @@ public class CloneController : MonoBehaviour
         activeClones.Add(clone);
         
         clone.OnHealthChanged += UpdateTotalHealth;
+        clone.OnHealTriggered += HealTriggered;
         UpdateTotalHealth();
     }
     
@@ -93,6 +94,14 @@ public class CloneController : MonoBehaviour
     private void UpdateTotalHealth()
     {
         hpText.text = $"Total HP: {GetTotalHealth()}%";
+    }
+
+    private void HealTriggered()
+    {
+        foreach (var clone in activeClones)
+        {
+            clone.Heal();
+        }
     }
     
     private float GetTotalHealth() => activeClones.Sum(clone => clone.CurrentHealth);
