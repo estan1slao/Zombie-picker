@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4012160720677748}
   m_Layer: 0
   m_Name: SR_Scope_00
-  m_TagString: Untagged
+  m_TagString: Gun
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

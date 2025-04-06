@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 542590058167244956}
   m_Layer: 0
   m_Name: BarelParent
-  m_TagString: Untagged
+  m_TagString: Barrel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,6 +81,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Barrel
       objectReference: {fileID: 0}
+    - target: {fileID: 2391087437358366395, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
+      propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391087437358366395, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
+      propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391087437358366395, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
+      propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391087437358366395, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
+      propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SpawnMines
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391087437358366395, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
+      propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MineSpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2391087437358366395, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
+      propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2652082911955559136, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3357560937159569743, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -123,6 +151,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 489441081539407560, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
+    - {fileID: 4827505536599428556, guid: 0be8e6679efe86045830892541d1fbf1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

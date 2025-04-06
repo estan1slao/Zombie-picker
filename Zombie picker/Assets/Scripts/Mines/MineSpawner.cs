@@ -1,6 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(Barrel))]
 public class MineSpawner : MonoBehaviour
 {
     public GameObject minePrefab;

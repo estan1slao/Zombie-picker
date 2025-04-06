@@ -29,6 +29,7 @@ public class Clone : MonoBehaviour
     
     public event Action OnHealthChanged;
     public event Action OnHealTriggered;
+    public event Action<GunData> OnGunChangeTriggered;
 
     private void Awake()
     {
@@ -52,6 +53,11 @@ public class Clone : MonoBehaviour
         if (other.CompareTag("FirstAidKit"))
         {
             OnHealTriggered?.Invoke();
+            Destroy(other.gameObject);
+        }
+        else if (other.CompareTag("Gun"))
+        {
+            OnGunChangeTriggered?.Invoke(other.GetComponent<Gun>().GunData);
             Destroy(other.gameObject);
         }
     }
@@ -105,7 +111,7 @@ public class Clone : MonoBehaviour
     
     private void Shoot()
     {
-        bulletController.Shoot(currentGun, transform.position);
+        bulletController.Shoot(currentGun, weaponSlot.position);
     }
 
     public void ChangeWeapon(GunData newGun)

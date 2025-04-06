@@ -75,6 +75,7 @@ public class CloneController : MonoBehaviour
         
         clone.OnHealthChanged += UpdateTotalHealth;
         clone.OnHealTriggered += HealTriggered;
+        clone.OnGunChangeTriggered += ChangeGuns;
         UpdateTotalHealth();
     }
     
@@ -101,6 +102,13 @@ public class CloneController : MonoBehaviour
         foreach (var clone in activeClones)
         {
             clone.Heal();
+        }
+    }
+    private void ChangeGuns(GunData gunData)
+    {
+        foreach (var clone in activeClones)
+        {
+            clone.ChangeWeapon(gunData);
         }
     }
     
