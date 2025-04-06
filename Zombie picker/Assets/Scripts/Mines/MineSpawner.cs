@@ -6,7 +6,7 @@ public class MineSpawner : MonoBehaviour
     public GameObject minePrefab;
     public float mineOffset = 5f;
     
-    private void SpawnMines()
+    public void SpawnMines()
     {
         var lastPosition = new Vector3(transform.position.x, 0f, 0f);
         

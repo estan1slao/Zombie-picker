@@ -29,10 +29,17 @@ public class Bullet : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Enemy")) return;
-        
-        other.GetComponent<Zombie>().TakeDamage(GunData.damage);
-        Destroy(gameObject);
+        if (other.CompareTag("Enemy"))
+        {
+            other.GetComponent<Zombie>().TakeDamage(GunData.damage);
+            Destroy(gameObject);   
+        }
+        else if (other.CompareTag("Barrel"))
+        {
+            other.GetComponent<Barrel>().TakeDamage();
+            Destroy(gameObject);   
+        }
+         
     }
     
     private void OnDestroy() => StopCoroutine(moveRoutine);

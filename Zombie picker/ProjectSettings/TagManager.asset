@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - FirstAidKit
+  - Barrel
   layers:
   - Default
   - TransparentFX

@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  direction: {x: 0, y: 0, z: 1}
+  direction: {x: 1, y: 0, z: 0}
 --- !u!114 &5387623660803510836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,4 +162,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90eba2c13aed40c5abf37c1a92a5ad6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
