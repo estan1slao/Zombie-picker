@@ -122,6 +122,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &1611191 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8238837397287363992, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
+  m_PrefabInstance: {fileID: 206647793}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb43fe54a3a54a3e803604239c7a464f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &37418478
 GameObject:
   m_ObjectHideFlags: 0
@@ -372,6 +383,42 @@ PrefabInstance:
     - target: {fileID: 1076254801795255878, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
       propertyPath: m_Name
       value: BarelParent
+      objectReference: {fileID: 0}
+    - target: {fileID: 1076254801795255878, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
+      propertyPath: m_TagString
+      value: Barrel
+      objectReference: {fileID: 0}
+    - target: {fileID: 1262799105015224047, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
+      propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1262799105015224047, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
+      propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1262799105015224047, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
+      propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1611191}
+    - target: {fileID: 1262799105015224047, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
+      propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1262799105015224047, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
+      propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SpawnMines
+      objectReference: {fileID: 0}
+    - target: {fileID: 1262799105015224047, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
+      propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MineSpawner, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1262799105015224047, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
+      propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1470024060045314740, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7537870871158344259, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
       propertyPath: m_LocalPosition.x
