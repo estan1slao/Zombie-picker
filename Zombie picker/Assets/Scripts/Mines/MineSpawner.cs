@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(Barrel))]
 public class MineSpawner : MonoBehaviour
@@ -6,9 +7,16 @@ public class MineSpawner : MonoBehaviour
     public GameObject minePrefab;
     public float mineOffset = 5f;
     
+    private Transform barrelMain;
+
+    private void Start()
+    {
+        barrelMain = GetComponent<Barrel>().barrelMain.transform;
+    }
+
     public void SpawnMines()
     {
-        var lastPosition = new Vector3(transform.position.x, 0f, 0f);
+        var lastPosition = new Vector3(barrelMain.position.x, 0f, 0f);
         
         for (var i = 0; i < 10; i++)
         {
