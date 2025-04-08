@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
+
 
 public class CloneController : MonoBehaviour
 {
@@ -14,8 +17,12 @@ public class CloneController : MonoBehaviour
     public float distanceFromCamera = 10f;
     public float fixedY = 50f;
     
-    [Header("Text")]
-    public TextMeshProUGUI hpText;
+    [Header("HP")]
+    public Slider hpSlider;
+    
+    [Header("Icon")]
+    public Image iconImage;
+    public TextMeshProUGUI dpsText;
     
     private readonly List<Clone> activeClones = new();
     
@@ -95,7 +102,26 @@ public class CloneController : MonoBehaviour
 
     private void UpdateTotalHealth()
     {
-        hpText.text = $"Total HP: {GetTotalHealth()}%";
+        StartCoroutine(SmoothFill(GetTotalHealth(), GetMaxTotalHealth()));
+    }
+    
+    private IEnumerator SmoothFill(float targetValue, float maxValueTarget)
+    {
+        var startValue = hpSlider.value;
+        var maxValue = hpSlider.maxValue;
+        var duration = 0.5f;
+        var elapsed = 0f;
+ 
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            hpSlider.value = Mathf.Lerp(startValue, targetValue, elapsed / duration);
+            hpSlider.maxValue = Mathf.Lerp(maxValue, maxValueTarget, elapsed / duration);
+            yield return null;
+        }
+ 
+        hpSlider.value = targetValue;
+        hpSlider.maxValue = maxValueTarget;
     }
 
     private void HealTriggered()
@@ -107,6 +133,9 @@ public class CloneController : MonoBehaviour
     }
     private void ChangeGuns(GunData gunData)
     {
+        iconImage.sprite = gunData.iconImage.sprite;
+        dpsText.text = $"DPS: {gunData.damage / (1 / gunData.fireRate)}";
+        
         foreach (var clone in activeClones)
         {
             clone.ChangeWeapon(gunData);
@@ -114,4 +143,6 @@ public class CloneController : MonoBehaviour
     }
     
     private float GetTotalHealth() => activeClones.Sum(clone => clone.CurrentHealth);
+    
+    private float GetMaxTotalHealth() => activeClones.Sum(clone => clone.maxHealth);
 }

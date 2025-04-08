@@ -19,3 +19,4 @@ MonoBehaviour:
   gunPrefab: {fileID: 1487774384131766, guid: ee329c3cd08e58645834d20702d7f6c6, type: 3}
   localPosition: {x: 0.003250346, y: -0.1444293, z: -0.02116917}
   localRotation: {x: 78.78811, y: 177.2053, z: 265.8345}
+  iconImage: {fileID: 2887927100938631315, guid: 81258572d7ab3ce48b4643166aaee561, type: 3}

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Zombie : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Zombie : MonoBehaviour
     public float attackDistance = 1.5f;
     public float attackRate = 1f;
     public float detectRange = 5f;
+    
+    public Slider healthBar;
 
     private Transform target;
     private bool isAttacking = false;
@@ -23,6 +26,8 @@ public class Zombie : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         forwardDirection = transform.forward; // Изначально движемся вперед
+        healthBar.value = health;
+        healthBar.maxValue = health;
         FindNearestTarget();
     }
 
@@ -118,10 +123,27 @@ public class Zombie : MonoBehaviour
     public void TakeDamage(float damage)
     {
         health -= damage;
+        StartCoroutine(SmoothFill(health));
         if (health <= 0)
         {
             Destroy(gameObject);
         }
+    }
+    
+    private IEnumerator SmoothFill(float targetValue)
+    {
+        var startValue = healthBar.value;
+        var duration = 0.1f;
+        var elapsed = 0f;
+ 
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            healthBar.value = Mathf.Lerp(startValue, targetValue, elapsed / duration);
+            yield return null;
+        }
+ 
+        healthBar.value = targetValue;
     }
     
     private void OnDrawGizmosSelected()

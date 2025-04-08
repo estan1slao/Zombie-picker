@@ -16,7 +16,7 @@ public class MineSpawner : MonoBehaviour
 
     public void SpawnMines()
     {
-        var lastPosition = new Vector3(barrelMain.position.x, 0f, 0f);
+        var lastPosition = new Vector3(barrelMain.position.x, 0f, barrelMain.position.z);
         
         for (var i = 0; i < 10; i++)
         {

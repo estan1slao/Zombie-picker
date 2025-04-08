@@ -1,13 +1,20 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class Barrel : MonoBehaviour
 {
+    [SerializeField] private Image mineIcon;
     [NonSerialized] private int hits = 10;
     
     public int maxHits = 10;
     public float damage = 100f;
+    
+    public Image barrelImage;
+    
+    public TextMeshProUGUI hitText;
 
     public GameObject barrelMain;
 
@@ -16,6 +23,17 @@ public class Barrel : MonoBehaviour
     private void Start()
     {
         hits = maxHits;
+        hitText.text = maxHits.ToString();
+
+        if (TryGetComponent<GunSpawner>(out var gun))
+        {
+            barrelImage.sprite = gun.gunData.iconImage.sprite;
+        }
+
+        if (TryGetComponent<MineSpawner>(out var mine))
+        {
+            barrelImage.sprite = mineIcon.sprite;
+        }
     }
 
     private void Update()
@@ -36,6 +54,8 @@ public class Barrel : MonoBehaviour
     {
         hits = Mathf.Clamp(hits-1, 0, maxHits);
         
+        hitText.text = hits.ToString();
+        
         if (hits <= 0) 
             Break();
     }
@@ -43,5 +63,6 @@ public class Barrel : MonoBehaviour
     private void Break()
     {
         breakEvent.Invoke();
+        Destroy(barrelMain);
     }
 }

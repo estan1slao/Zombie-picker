@@ -188,9 +188,9 @@ MonoBehaviour:
   followSpeed: 100
   separationDistance: 1.5
   separationWeight: 0.2
-  currentGun: {fileID: 11400000, guid: c85341d69e7c3664491aa301aa2260ab, type: 2}
+  currentGun: {fileID: 11400000, guid: 44485790785ef414a9d1df0333ccd086, type: 2}
   weaponSlot: {fileID: 9114524242161555382}
-  pistol: {fileID: 11400000, guid: c85341d69e7c3664491aa301aa2260ab, type: 2}
+  pistol: {fileID: 11400000, guid: 44485790785ef414a9d1df0333ccd086, type: 2}
 --- !u!114 &8416208482297180728
 MonoBehaviour:
   m_ObjectHideFlags: 0
