@@ -69,7 +69,7 @@ public class Zombie : MonoBehaviour
         rb.MovePosition(rb.position + forwardDirection * speed * Time.fixedDeltaTime);
     }
 
-    protected void FindNearestTarget()
+    private void FindNearestTarget()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
