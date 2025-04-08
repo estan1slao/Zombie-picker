@@ -33,6 +33,7 @@ public class CloneController : MonoBehaviour
     private void Start()
     {
         mainCamera = Camera.main;
+        SpawnClone();
     }
 
     public void OnHold(InputAction.CallbackContext context)
@@ -85,6 +86,14 @@ public class CloneController : MonoBehaviour
         clone.OnHealTriggered += HealTriggered;
         clone.OnGunChangeTriggered += ChangeGuns;
         UpdateTotalHealth();
+    }
+
+    public void SpawnClonesForAd(int clonesCount)
+    {
+        for (int i = 0; i < clonesCount; i++)
+        {
+            SpawnClone();
+        }
     }
     
     private void MoveClones()

@@ -8,4 +8,9 @@ public class Pause : MonoBehaviour
     {
         Time.timeScale = Time.timeScale == 0 ? 1 : 0;
     }
+
+    public void UnpauseGame()
+    {
+        Time.timeScale = 1;
+    }
 }
