@@ -15,11 +15,11 @@ public class Zombie : MonoBehaviour
     
     public Slider healthBar;
 
-    private Transform target;
-    private bool isAttacking = false;
+    protected Transform target;
+    protected bool isAttacking = false;
     private Rigidbody rb;
     private Vector3 forwardDirection;
-    private Animator animator;
+    protected Animator animator;
 
     private void Start()
     {
@@ -94,7 +94,7 @@ public class Zombie : MonoBehaviour
         target = closest;
     }
 
-    private IEnumerator Attack()
+    protected virtual IEnumerator Attack()
     {
         isAttacking = true;
         while (target != null && Vector3.Distance(transform.position, target.position) <= attackDistance)
