@@ -39,7 +39,11 @@ public class Bullet : MonoBehaviour
             other.GetComponent<Barrel>().TakeDamage();
             Destroy(gameObject);   
         }
-         
+        else if (other.CompareTag("Wall"))
+        {
+            other.GetComponent<WallController>().TakeDamage();
+            Destroy(gameObject);
+        }
     }
     
     private void OnDestroy() => StopCoroutine(moveRoutine);
