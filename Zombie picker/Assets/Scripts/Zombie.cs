@@ -12,11 +12,11 @@ public class Zombie : MonoBehaviour
     public float attackRate = 1f;
     public float detectRange = 5f;
 
-    private Transform target;
-    private bool isAttacking = false;
+    protected Transform target;
+    protected bool isAttacking = false;
     private Rigidbody rb;
     private Vector3 forwardDirection;
-    private Animator animator;
+    protected Animator animator;
 
     private void Start()
     {
@@ -69,7 +69,7 @@ public class Zombie : MonoBehaviour
         rb.MovePosition(rb.position + forwardDirection * speed * Time.fixedDeltaTime);
     }
 
-    private void FindNearestTarget()
+    protected void FindNearestTarget()
     {
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
 
@@ -89,7 +89,7 @@ public class Zombie : MonoBehaviour
         target = closest;
     }
 
-    private IEnumerator Attack()
+    protected virtual IEnumerator Attack()
     {
         isAttacking = true;
         while (target != null && Vector3.Distance(transform.position, target.position) <= attackDistance)

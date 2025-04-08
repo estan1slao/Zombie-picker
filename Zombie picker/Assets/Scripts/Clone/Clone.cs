@@ -97,7 +97,7 @@ public class Clone : MonoBehaviour
     
     public void TakeDamage(float damage)
     {
-        CurrentHealth -= damage;
+        CurrentHealth = Mathf.Clamp(CurrentHealth - damage, 0, maxHealth);
         OnHealthChanged?.Invoke();
         if (CurrentHealth <= 0) 
             Die();
