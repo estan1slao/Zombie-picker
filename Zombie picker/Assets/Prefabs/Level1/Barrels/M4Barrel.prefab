@@ -534,7 +534,7 @@ PrefabInstance:
       objectReference: {fileID: 1843184802620875347}
     - target: {fileID: 1262799105015224047, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
       propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1262799105015224047, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
       propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -543,7 +543,7 @@ PrefabInstance:
     - target: {fileID: 1262799105015224047, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
       propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 5349728464786765128, guid: 878c84c55d0528a45aa4e8c26da9e420, type: 3}
+      objectReference: {fileID: 2931961854635258047}
     - target: {fileID: 1262799105015224047, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
       propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -554,7 +554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1262799105015224047, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
       propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SpawnMines
+      value: SpawnGun
       objectReference: {fileID: 0}
     - target: {fileID: 1262799105015224047, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
       propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -562,7 +562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1262799105015224047, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
       propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MineSpawner, Assembly-CSharp
+      value: GunSpawner, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1262799105015224047, guid: 64123a238207fad4892aa97f5c7530fa, type: 3}
       propertyPath: breakEvent.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName

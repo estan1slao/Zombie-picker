@@ -24,6 +24,10 @@ public class CloneController : MonoBehaviour
     public Image iconImage;
     public TextMeshProUGUI dpsText;
     
+    [Header("Other")]
+    public Pause pause;
+    public GameObject loseCanvas;
+    
     private readonly List<Clone> activeClones = new();
     
     private bool isMouseHolding;
@@ -160,6 +164,12 @@ public class CloneController : MonoBehaviour
  
         hpSlider.value = targetValue;
         hpSlider.maxValue = maxValueTarget;
+        
+        if (GetTotalHealth() <= 0)
+        {
+            pause.PauseGame();
+            loseCanvas.SetActive(true);
+        }
     }
 
     private void HealTriggered()

@@ -8,6 +8,8 @@ TagManager:
   - FirstAidKit
   - Barrel
   - Gun
+  - CloneController
+  - Wall
   layers:
   - Default
   - TransparentFX

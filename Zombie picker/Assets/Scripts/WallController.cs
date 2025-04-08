@@ -1,4 +1,5 @@
 ﻿using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,7 @@ public class WallController : MonoBehaviour
     public GameObject gStenka;
     public GameObject rStenka;
     public WallController otherWallController;
+    public TextMeshProUGUI hitText;
     
     private CloneController cloneController;
 
@@ -17,6 +19,7 @@ public class WallController : MonoBehaviour
     {
         cloneController = GameObject.FindGameObjectWithTag("CloneController").GetComponent<CloneController>();
         UpdateWall();
+        hitText.text = hits.ToString();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,7 +29,9 @@ public class WallController : MonoBehaviour
             ProcessWall();
             
             IsActive = false;
-            otherWallController.IsActive = false;
+            
+            if (otherWallController != null)
+                otherWallController.IsActive = false;
             
             Destroy(gameObject);
         }
@@ -49,7 +54,7 @@ public class WallController : MonoBehaviour
     {
         hits++;
         UpdateWall();
-        // hitText.text = hits.ToString();
+        hitText.text = hits.ToString();
     }
 
     private void UpdateWall()

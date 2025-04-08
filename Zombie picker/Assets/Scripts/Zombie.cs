@@ -120,7 +120,7 @@ public class Zombie : MonoBehaviour
         isAttacking = false;
     }
 
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         health -= damage;
         StartCoroutine(SmoothFill(health));
@@ -130,7 +130,7 @@ public class Zombie : MonoBehaviour
         }
     }
     
-    private IEnumerator SmoothFill(float targetValue)
+    private protected IEnumerator SmoothFill(float targetValue)
     {
         var startValue = healthBar.value;
         var duration = 0.1f;

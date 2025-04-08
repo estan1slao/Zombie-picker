@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class ZombieBoss : Zombie
 {
+    [SerializeField] private Pause pause;
+    [SerializeField] private GameObject winCanvas;
+    
     protected override IEnumerator Attack()
     {
         isAttacking = true;
@@ -23,5 +26,17 @@ public class ZombieBoss : Zombie
         target = null;
         
         isAttacking = false;
+    }
+    
+    public override void TakeDamage(float damage)
+    {
+        health -= damage;
+        StartCoroutine(SmoothFill(health));
+        if (health <= 0)
+        {
+            pause.PauseGame();
+            winCanvas.SetActive(true);
+            Destroy(gameObject);
+        }
     }
 }
