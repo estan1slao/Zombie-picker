@@ -30,6 +30,35 @@ public class CloneController : MonoBehaviour
     private Camera mainCamera;
     private Vector3 targetPosition;
 
+    public Clone GetNearestToMouseClone() => 
+        activeClones.OrderBy(c => Vector3.Distance(c.transform.position, targetPosition)).FirstOrDefault();
+
+    public void SpawnClones(int count)
+    {
+        for (var i = 0; i < count; i++) SpawnClone();
+        Debug.Log($"spawned {count}");
+    }
+    
+    public void DestroyClones(int count)
+    {
+        if (count > activeClones.Count)
+            count = activeClones.Count;
+        
+        for (var i = 0; i < count; i++)
+            DestroyClone(activeClones[i]);
+        
+        UpdateTotalHealth();
+        Debug.Log($"destroyed {count}");
+    }
+
+    private void DestroyClone(Clone clone)
+    {
+        clone.OnHealthChanged -= UpdateTotalHealth;
+        clone.OnHealTriggered -= HealTriggered;
+        clone.OnGunChangeTriggered -= ChangeGuns;
+        Destroy(clone.gameObject);
+    }
+    
     private void Start()
     {
         mainCamera = Camera.main;
@@ -64,7 +93,7 @@ public class CloneController : MonoBehaviour
         }
     }
     
-    public void SpawnClone()
+    private void SpawnClone()
     {
         var position = Vector3.zero;
         

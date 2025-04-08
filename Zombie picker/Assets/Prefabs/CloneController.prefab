@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8431662532319418191}
   m_Layer: 0
   m_Name: CloneController
-  m_TagString: Untagged
+  m_TagString: CloneController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,7 +49,10 @@ MonoBehaviour:
   cloneSpacing: 1.5
   roadWidth: 20
   distanceFromCamera: 5
-  hpText: {fileID: 0}
+  fixedY: 50
+  hpSlider: {fileID: 0}
+  iconImage: {fileID: 0}
+  dpsText: {fileID: 0}
 --- !u!114 &8431662532319418191
 MonoBehaviour:
   m_ObjectHideFlags: 0
