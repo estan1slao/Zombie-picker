@@ -9,6 +9,8 @@ public class Barrel : MonoBehaviour
     public int maxHits = 10;
     public float damage = 100f;
 
+    public GameObject barrelMain;
+
     public UnityEvent breakEvent;
     
     private void Start()
@@ -19,7 +21,7 @@ public class Barrel : MonoBehaviour
     private void Update()
     {
         if (transform.position.x >= 20)
-            Destroy(gameObject);
+            Destroy(barrelMain);
     }
 
     private void OnTriggerEnter(Collider other)
