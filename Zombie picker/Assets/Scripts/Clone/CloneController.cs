@@ -12,6 +12,7 @@ public class CloneController : MonoBehaviour
     public float cloneSpacing = 1.5f;
     public float roadWidth = 10f;
     public float distanceFromCamera = 10f;
+    public float fixedY = 50f;
     
     [Header("Text")]
     public TextMeshProUGUI hpText;
@@ -45,7 +46,7 @@ public class CloneController : MonoBehaviour
         
         var clampedZ = Mathf.Clamp(worldPosition.z, -roadWidth / 2, roadWidth / 2);
                 
-        targetPosition = new Vector3(worldPosition.x, worldPosition.y, clampedZ);
+        targetPosition = new Vector3(worldPosition.x, fixedY, clampedZ);
     }
     
     private void Update()
