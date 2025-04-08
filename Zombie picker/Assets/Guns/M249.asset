@@ -18,4 +18,4 @@ MonoBehaviour:
   lifeTime: 5
   gunPrefab: {fileID: 1261748888023320, guid: 432643b6e5110004083fdff3e33e490b, type: 3}
   localPosition: {x: 0.004, y: 0.035, z: -0.102}
-  localRotation: {x: 71.32841, y: 184.58682, z: 265.40714}
+  localRotation: {x: 71.32841, y: 184.5868, z: 265.4071}

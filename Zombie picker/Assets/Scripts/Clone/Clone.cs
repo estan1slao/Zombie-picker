@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,6 +32,8 @@ public class Clone : MonoBehaviour
     public event Action OnHealTriggered;
     public event Action<GunData> OnGunChangeTriggered;
 
+    private Coroutine shootRoutine;
+
     private void Awake()
     {
         CurrentHealth = maxHealth;
@@ -44,9 +47,11 @@ public class Clone : MonoBehaviour
         ChangeWeapon(pistol);
         
         if (currentGun.fireRate == 0) return;
-        
-        InvokeRepeating(nameof(Shoot), 0f, 1 / currentGun.fireRate);
+
+        shootRoutine = StartCoroutine(Shoot());
     }
+
+    private void OnDestroy() => StopCoroutine(shootRoutine);
 
     private void OnTriggerEnter(Collider other)
     {
@@ -109,9 +114,13 @@ public class Clone : MonoBehaviour
         Destroy(gameObject);
     }
     
-    private void Shoot()
+    private IEnumerator Shoot()
     {
-        bulletController.Shoot(currentGun, weaponSlot.position);
+        while (true)
+        {       
+            yield return new WaitForSeconds(1 / currentGun.fireRate);
+            bulletController.Shoot(currentGun, weaponSlot.position);
+        }
     }
 
     public void ChangeWeapon(GunData newGun)
