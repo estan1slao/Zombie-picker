@@ -7,18 +7,16 @@ public class Bullet : MonoBehaviour
 {
     [NonSerialized] public GunData GunData;
     private Rigidbody rb;
-    private AudioSource audioSource;
     private Coroutine moveRoutine;
     
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
     {
-        audioSource.PlayOneShot(GunData.audioClip);
+        GunSoundManager.Instance.PlayShootSound(GunData.audioClip);
         moveRoutine = StartCoroutine(Move());
     }
 
