@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class Zombie : MonoBehaviour
@@ -21,10 +22,15 @@ public class Zombie : MonoBehaviour
     private Vector3 forwardDirection;
     protected Animator animator;
 
+    public AudioClip takeDamageSound;
+
+    private AudioSource audioSource;
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         forwardDirection = transform.forward; // Изначально движемся вперед
         healthBar.value = health;
         healthBar.maxValue = health;
@@ -122,6 +128,7 @@ public class Zombie : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
+        audioSource.PlayOneShot(takeDamageSound);
         health -= damage;
         StartCoroutine(SmoothFill(health));
         if (health <= 0)

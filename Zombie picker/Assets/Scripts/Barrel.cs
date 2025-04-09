@@ -19,6 +19,12 @@ public class Barrel : MonoBehaviour
     public GameObject barrelMain;
 
     public UnityEvent breakEvent;
+
+    public AudioClip takeDamageSound;
+    public AudioClip breakSound;
+
+    private AudioSource audioSource;
+    
     
     private void Start()
     {
@@ -52,6 +58,8 @@ public class Barrel : MonoBehaviour
 
     public void TakeDamage()
     {
+        audioSource.PlayOneShot(takeDamageSound);
+        
         hits = Mathf.Clamp(hits-1, 0, maxHits);
         
         hitText.text = hits.ToString();
@@ -62,6 +70,7 @@ public class Barrel : MonoBehaviour
 
     private void Break()
     {
+        audioSource.PlayOneShot(breakSound);
         breakEvent.Invoke();
         Destroy(barrelMain);
     }

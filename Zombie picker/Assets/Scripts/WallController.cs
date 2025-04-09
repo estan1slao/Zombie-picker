@@ -24,14 +24,19 @@ public class WallController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && IsActive)
+        if (other.CompareTag("Player") && otherWallController == null &&
+            cloneController.GetNearestToMouseClone().gameObject == other.gameObject)
+        {
+            ProcessWall();
+            Destroy(gameObject);
+        }
+        
+        else if (other.CompareTag("Player") && IsActive)
         {
             ProcessWall();
             
             IsActive = false;
-            
-            if (otherWallController != null)
-                otherWallController.IsActive = false;
+            otherWallController.IsActive = false;
             
             Destroy(gameObject);
         }
