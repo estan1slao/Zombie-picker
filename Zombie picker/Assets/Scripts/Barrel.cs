@@ -22,8 +22,7 @@ public class Barrel : MonoBehaviour
 
     public AudioClip takeDamageSound;
     public AudioClip breakSound;
-
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     
     
     private void Start()

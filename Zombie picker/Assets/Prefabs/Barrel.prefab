@@ -225,23 +225,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c76665a3014e48089cb59beb74fc9961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineIcon: {fileID: 0}
   maxHits: 10
-  hits: 10
-  unityEvent:
+  damage: 100
+  barrelImage: {fileID: 0}
+  hitText: {fileID: 0}
+  barrelMain: {fileID: 0}
+  breakEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4827505536599428556}
-        m_TargetAssemblyTypeName: MineSpawner, Assembly-CSharp
-        m_MethodName: SpawnMines
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
+  takeDamageSound: {fileID: 8300000, guid: 13ef8145005791b4484c0f18c8d411f4, type: 3}
+  breakSound: {fileID: 8300000, guid: 71a310fe4d1e42a4b867a415c96ebce8, type: 3}
+  audioSource: {fileID: 0}
 --- !u!114 &4827505536599428556
 MonoBehaviour:
   m_ObjectHideFlags: 0
