@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Barrel : MonoBehaviour
 {
     [SerializeField] private Image mineIcon;
+    [SerializeField] private Image healIcon;
     [NonSerialized] private int hits = 10;
     
     public int maxHits = 10;
@@ -43,6 +44,11 @@ public class Barrel : MonoBehaviour
         if (TryGetComponent<MineSpawner>(out var mine))
         {
             barrelImage.sprite = mineIcon.sprite;
+        }
+
+        if (TryGetComponent<FirstAidKitSpawner>(out var heal))
+        {
+            barrelImage.sprite = healIcon.sprite;
         }
     }
 

@@ -73,6 +73,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5678284494352805590, guid: 72056e7acb885624b8d9ac4142eb1a79, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5678284494352805590, guid: 72056e7acb885624b8d9ac4142eb1a79, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 39b66bdc71e1543468d462d9c8740c98, type: 2}
@@ -88,13 +92,13 @@ PrefabInstance:
       addedObject: {fileID: 2177943394350297075}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 72056e7acb885624b8d9ac4142eb1a79, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7860100188252088220}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 72056e7acb885624b8d9ac4142eb1a79, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 279567403385908533}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 72056e7acb885624b8d9ac4142eb1a79, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8416208482297180728}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 72056e7acb885624b8d9ac4142eb1a79, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1318876048721246485}
   m_SourcePrefab: {fileID: 100100000, guid: 72056e7acb885624b8d9ac4142eb1a79, type: 3}
 --- !u!1 &1203074335645009868 stripped
 GameObject:
@@ -137,7 +141,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -145,33 +149,6 @@ CapsuleCollider:
   m_Height: 1.7052153
   m_Direction: 1
   m_Center: {x: 0, y: 0.822009, z: 0}
---- !u!54 &7860100188252088220
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1203074335645009868}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 10
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 116
-  m_CollisionDetection: 0
 --- !u!114 &279567403385908533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,12 +162,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  followSpeed: 100
-  separationDistance: 1.5
-  separationWeight: 0.2
+  followSpeed: 5
+  separationDistance: 6
+  separationWeight: 4
   currentGun: {fileID: 11400000, guid: 44485790785ef414a9d1df0333ccd086, type: 2}
   weaponSlot: {fileID: 9114524242161555382}
   pistol: {fileID: 11400000, guid: 44485790785ef414a9d1df0333ccd086, type: 2}
+  directionSmoothTime: 0.1
 --- !u!114 &8416208482297180728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +182,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 470225648245533322, guid: 4a7df5201dcd51b4aa5b3f6e915cea31, type: 3}
+--- !u!54 &1318876048721246485
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1203074335645009868}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!4 &9114524242161555382 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7065602371345607979, guid: 72056e7acb885624b8d9ac4142eb1a79, type: 3}

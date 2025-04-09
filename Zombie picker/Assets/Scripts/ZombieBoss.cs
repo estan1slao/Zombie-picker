@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class ZombieBoss : Zombie
 {
-    [SerializeField] private Pause pause;
     [SerializeField] private GameObject winCanvas;
     
     protected override IEnumerator Attack()
@@ -34,7 +33,7 @@ public class ZombieBoss : Zombie
         StartCoroutine(SmoothFill(health));
         if (health <= 0)
         {
-            pause.PauseGame();
+            Time.timeScale = 0;
             winCanvas.SetActive(true);
             Destroy(gameObject);
         }

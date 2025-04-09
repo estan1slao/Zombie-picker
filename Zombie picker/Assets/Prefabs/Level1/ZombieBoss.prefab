@@ -435,15 +435,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a787e9f52ba7a424f89a4640802840b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -48.14
+      value: -420
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a787e9f52ba7a424f89a4640802840b6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.00000023841858
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a787e9f52ba7a424f89a4640802840b6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.44
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a787e9f52ba7a424f89a4640802840b6, type: 3}
       propertyPath: m_LocalRotation.w
@@ -597,7 +597,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  health: 1000
+  health: 5000
   damage: 1000
   attackDistance: 7
   attackRate: 2.5
@@ -627,9 +627,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 100
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -662,7 +662,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0

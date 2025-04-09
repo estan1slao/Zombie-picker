@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 60
   speed: 10
-  fireRate: 7
+  fireRate: 3.5
   lifeTime: 5
   gunPrefab: {fileID: 1261748888023320, guid: 432643b6e5110004083fdff3e33e490b, type: 3}
   localPosition: {x: 0.004, y: 0.035, z: -0.102}

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(BulletController))]
@@ -19,7 +20,6 @@ public class Clone : MonoBehaviour
     [Header("Gun")]
     public GunData currentGun;
     
-    private Rigidbody rb;
     private BulletController bulletController;
     
     [Header("Gun Visuals")]
@@ -33,6 +33,10 @@ public class Clone : MonoBehaviour
     public event Action<GunData> OnGunChangeTriggered;
 
     private Coroutine shootRoutine;
+    
+    private Vector3 lastPosition;
+    private Vector3 smoothedDirection = Vector3.zero;
+    public float directionSmoothTime = 0.1f;
 
     private void Awake()
     {
@@ -41,7 +45,6 @@ public class Clone : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
         bulletController = GetComponent<BulletController>();
 
         ChangeWeapon(pistol);
@@ -69,30 +72,43 @@ public class Clone : MonoBehaviour
 
     public void Follow(Vector3 targetPosition, List<Clone> allClones)
     {
-        var cohesionDirection = (targetPosition - transform.position).normalized;
+        targetPosition = new Vector3(targetPosition.x, 0, targetPosition.z);
+
+        Vector3 toTarget = targetPosition - transform.position;
+        toTarget.y = 0;
+
+        float moveThresholdSqr = 0.05f * 0.05f;
+        if (toTarget.sqrMagnitude < moveThresholdSqr)
+            return;
+
+        var cohesionDirection = toTarget.normalized;
 
         var separationForce = Vector3.zero;
-        var neighbors = 0;
-        foreach (var clone in allClones)
+        int neighbors = 0;
+
+        for (int i = 0; i < allClones.Count; i++)
         {
-            if (clone == this)
-                continue;
+            var other = allClones[i];
+            if (other == this) continue;
 
-            var offset = transform.position - clone.transform.position;
-            var distance = offset.magnitude;
-            
-            if (!(distance < separationDistance) || !(distance > 0)) continue;
+            var offset = transform.position - other.transform.position;
+            float distanceSqr = offset.sqrMagnitude;
 
-            separationForce += offset.normalized / distance;
-            neighbors++;
+            if (distanceSqr < separationDistance * separationDistance && distanceSqr > 0.0001f)
+            {
+                separationForce += offset / distanceSqr;
+                neighbors++;
+            }
         }
+
         if (neighbors > 0)
             separationForce /= neighbors;
 
-        var finalDirection = (cohesionDirection + separationForce * separationWeight).normalized;
-        
-        var newPosition = transform.position + finalDirection * (followSpeed * Time.deltaTime);
-        rb.MovePosition(newPosition);
+        var targetDirection = (cohesionDirection + separationForce * separationWeight).normalized;
+
+        smoothedDirection = Vector3.Lerp(smoothedDirection, targetDirection, directionSmoothTime);
+
+        transform.Translate(smoothedDirection * followSpeed * Time.deltaTime, Space.World);
     }
     
     public void TakeDamage(float damage)
@@ -140,6 +156,8 @@ public class Clone : MonoBehaviour
             currentGunVisual.transform.localPosition = currentGun.localPosition;
             currentGunVisual.transform.localEulerAngles = currentGun.localRotation;
             currentGunVisual.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+
+            currentGunVisual.GetComponent<Outline>().enabled = false;
         }
     }
 

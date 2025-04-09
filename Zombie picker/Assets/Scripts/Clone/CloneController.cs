@@ -27,6 +27,7 @@ public class CloneController : MonoBehaviour
     [Header("Other")]
     public Pause pause;
     public GameObject loseCanvas;
+    public Button adButton;
     
     private readonly List<Clone> activeClones = new();
     
@@ -39,8 +40,13 @@ public class CloneController : MonoBehaviour
 
     public void SpawnClones(int count)
     {
-        for (var i = 0; i < count; i++) SpawnClone();
-        Debug.Log($"spawned {count}");
+        int availableSlots = 75 - activeClones.Count;
+        int spawnCount = Mathf.Min(count, availableSlots);
+
+        for (var i = 0; i < spawnCount; i++)
+            SpawnClone();
+
+        Debug.Log($"spawned {spawnCount} (requested: {count})");
     }
     
     public void DestroyClones(int count)
@@ -49,18 +55,13 @@ public class CloneController : MonoBehaviour
             count = activeClones.Count;
         
         for (var i = 0; i < count; i++)
-            DestroyClone(activeClones[i]);
+            activeClones[i].TakeDamage(999999999f);
         
-        UpdateTotalHealth();
-        Debug.Log($"destroyed {count}");
-    }
+        activeClones.RemoveAll(clone => clone == null);
 
-    private void DestroyClone(Clone clone)
-    {
-        clone.OnHealthChanged -= UpdateTotalHealth;
-        clone.OnHealTriggered -= HealTriggered;
-        clone.OnGunChangeTriggered -= ChangeGuns;
-        Destroy(clone.gameObject);
+        UpdateTotalHealth();
+        
+        Debug.Log($"destroyed {count}");
     }
     
     private void Start()
@@ -86,6 +87,8 @@ public class CloneController : MonoBehaviour
         var worldPosition = mainCamera.ScreenToWorldPoint(screenPos);
         
         var clampedZ = Mathf.Clamp(worldPosition.z, -roadWidth / 2, roadWidth / 2);
+        
+        fixedY = activeClones.Count;
                 
         targetPosition = new Vector3(worldPosition.x, fixedY, clampedZ);
     }
@@ -127,6 +130,8 @@ public class CloneController : MonoBehaviour
         {
             SpawnClone();
         }
+        UpdateTotalHealth();
+        adButton.gameObject.SetActive(false);
     }
     
     private void MoveClones()
@@ -144,6 +149,7 @@ public class CloneController : MonoBehaviour
 
     private void UpdateTotalHealth()
     {
+        CheckLose();
         StartCoroutine(SmoothFill(GetTotalHealth(), GetMaxTotalHealth()));
     }
     
@@ -164,11 +170,19 @@ public class CloneController : MonoBehaviour
  
         hpSlider.value = targetValue;
         hpSlider.maxValue = maxValueTarget;
-        
-        if (GetTotalHealth() <= 0)
+    }
+
+    private void CheckLose()
+    {
+        activeClones.RemoveAll(clone => clone == null);
+    
+        if (activeClones.Count == 0 || GetTotalHealth() <= 0)
         {
-            pause.PauseGame();
-            loseCanvas.SetActive(true);
+            if (!loseCanvas.activeSelf)
+            {
+                pause.PauseGame();
+                loseCanvas.SetActive(true);
+            }
         }
     }
 
@@ -189,8 +203,18 @@ public class CloneController : MonoBehaviour
             clone.ChangeWeapon(gunData);
         }
     }
-    
-    private float GetTotalHealth() => activeClones.Sum(clone => clone.CurrentHealth);
-    
-    private float GetMaxTotalHealth() => activeClones.Sum(clone => clone.maxHealth);
+
+    private float GetTotalHealth()
+    {
+        if (activeClones.Count == 0)
+            return 0;
+        return activeClones.Sum(clone => clone.CurrentHealth);
+    }
+
+    private float GetMaxTotalHealth()
+    {
+        if (activeClones.Count == 0)
+             return 0;
+        return activeClones.Sum(clone => clone.maxHealth);
+    }
 }
