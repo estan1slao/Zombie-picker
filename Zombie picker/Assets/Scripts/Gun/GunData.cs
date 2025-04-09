@@ -16,4 +16,7 @@ public class GunData : ScriptableObject
 
     [Header("Visual2D")] 
     public Image iconImage;
+
+    [Header("Audio")] 
+    public AudioClip audioClip;
 }

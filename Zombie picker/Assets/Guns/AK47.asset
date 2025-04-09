@@ -20,3 +20,4 @@ MonoBehaviour:
   localPosition: {x: 0.003250346, y: -0.1444293, z: -0.02116917}
   localRotation: {x: 78.78811, y: 177.2053, z: 265.8345}
   iconImage: {fileID: 2887927100938631315, guid: 81258572d7ab3ce48b4643166aaee561, type: 3}
+  audioClip: {fileID: 8300000, guid: 3420014502999b04ea2dc3328ebc7d9f, type: 3}

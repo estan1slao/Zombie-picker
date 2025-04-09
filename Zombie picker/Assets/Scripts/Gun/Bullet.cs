@@ -7,11 +7,20 @@ public class Bullet : MonoBehaviour
 {
     [NonSerialized] public GunData GunData;
     private Rigidbody rb;
+    private AudioSource audioSource;
     private Coroutine moveRoutine;
     
-    private void Awake() => rb = GetComponent<Rigidbody>();
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
+    }
 
-    private void Start() => moveRoutine = StartCoroutine(Move());
+    private void Start()
+    {
+        audioSource.PlayOneShot(GunData.audioClip);
+        moveRoutine = StartCoroutine(Move());
+    }
 
     private IEnumerator Move()
     {
