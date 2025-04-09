@@ -10,6 +10,7 @@ TagManager:
   - Gun
   - CloneController
   - Wall
+  - AudioSourceBarrels
   layers:
   - Default
   - TransparentFX

@@ -22,9 +22,14 @@ public class Barrel : MonoBehaviour
 
     public AudioClip takeDamageSound;
     public AudioClip breakSound;
-    public AudioSource audioSource;
     
-    
+    private AudioSource audioSource;
+
+    private void Awake()
+    {
+        audioSource = GameObject.FindGameObjectWithTag("AudioSourceBarrels").GetComponent<AudioSource>();
+    }
+
     private void Start()
     {
         hits = maxHits;
