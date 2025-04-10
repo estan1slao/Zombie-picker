@@ -59,6 +59,8 @@ public class CloneController : MonoBehaviour
         for (var i = 0; i < count; i++)
             activeClones[i].TakeDamage(999999999f);
         
+        activeClones.RemoveAll(clone => clone == null);
+        
         UpdateTotalHealth();
         
         Debug.Log($"destroyed {count}");
