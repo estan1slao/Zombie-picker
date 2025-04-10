@@ -9,8 +9,6 @@ public class MoveForward : MonoBehaviour
     private void Update()
     {
         Move();
-        if (transform.position.x >= 20)
-            Destroy(gameObject);
     }
     
     private void Move()
