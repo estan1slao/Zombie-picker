@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Mine : MonoBehaviour
 {
+    public GameObject particle;
+    
     private void Update()
     {
         if (transform.position.x >= 20) 
@@ -14,6 +16,7 @@ public class Mine : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             other.GetComponent<Zombie>().TakeDamage(200);
+            Instantiate(particle, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

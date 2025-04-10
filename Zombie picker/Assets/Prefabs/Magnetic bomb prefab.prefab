@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 400000}
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
-  - component: {fileID: 6400000}
+  - component: {fileID: 8061654428021205370}
   - component: {fileID: 1102216266000022257}
   - component: {fileID: 7195748811311837272}
   - component: {fileID: 5387623660803510836}
@@ -87,8 +87,8 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6400000
-MeshCollider:
+--- !u!65 &8061654428021205370
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -105,10 +105,9 @@ MeshCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 88720c0ca8f538540b915600977b8560, type: 3}
+  serializedVersion: 3
+  m_Size: {x: 362.47894, y: 55.628807, z: 755.9033}
+  m_Center: {x: 6.67119, y: 28.185602, z: -4.886468}
 --- !u!54 &1102216266000022257
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -162,3 +161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90eba2c13aed40c5abf37c1a92a5ad6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particle: {fileID: 1742013225946848, guid: b3d8264aa7d2d824a8a503e45291ddf4, type: 3}
