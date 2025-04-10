@@ -128,7 +128,9 @@ public class Zombie : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
-        audioSource.PlayOneShot(takeDamageSound);
+        if (gameObject != null)
+            audioSource.PlayOneShot(takeDamageSound);
+        
         health -= damage;
         StartCoroutine(SmoothFill(health));
         if (health <= 0)
