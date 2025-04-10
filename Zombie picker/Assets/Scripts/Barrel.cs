@@ -25,6 +25,9 @@ public class Barrel : MonoBehaviour
     public AudioClip breakSound;
     
     private AudioSource audioSource;
+    
+    private float lastPlayTime;
+    private float minInterval = 0.05f;
 
     private void Awake()
     {
@@ -68,7 +71,11 @@ public class Barrel : MonoBehaviour
 
     public void TakeDamage()
     {
-        audioSource.PlayOneShot(takeDamageSound);
+        if (Time.time - lastPlayTime > minInterval)
+        {
+            audioSource.PlayOneShot(takeDamageSound);
+            lastPlayTime = Time.time;
+        }
         
         hits = Mathf.Clamp(hits-1, 0, maxHits);
         
