@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using YG;
 using Random = UnityEngine.Random;
 
 
@@ -28,12 +29,15 @@ public class CloneController : MonoBehaviour
     public Pause pause;
     public GameObject loseCanvas;
     public Button adButton;
+    public GameObject pauseCanvas;
     
     private readonly List<Clone> activeClones = new();
     
     private bool isMouseHolding;
     private Camera mainCamera;
     private Vector3 targetPosition;
+    
+    private int clonesToSpawnAfterAd;
 
     public Clone GetNearestToMouseClone() => 
         activeClones.OrderBy(c => Vector3.Distance(c.transform.position, targetPosition)).FirstOrDefault();
@@ -125,17 +129,39 @@ public class CloneController : MonoBehaviour
         clone.OnGunChangeTriggered += ChangeGuns;
         UpdateTotalHealth();
     }
-
+    
     public void SpawnClonesForAd(int clonesCount)
     {
-        for (int i = 0; i < clonesCount; i++)
-        {
-            SpawnClone();
-        }
-        UpdateTotalHealth();
-        adButton.gameObject.SetActive(false);
+        YandexGame.RewVideoShow(1); // ID 1 должен совпадать с кейсом в OnRewarded
+        clonesToSpawnAfterAd = clonesCount;
+        pauseCanvas.gameObject.SetActive(false);
     }
-    
+
+    private void OnEnable()
+    {
+        YandexGame.RewardVideoEvent += OnRewarded;
+    }
+
+    private void OnDisable()
+    {
+        YandexGame.RewardVideoEvent -= OnRewarded;
+    }
+
+    private void OnRewarded(int id)
+    {
+        if (id == 1) // Это должен быть тот же ID, что и в RewVideoShow
+        {
+            for (int i = 0; i < clonesToSpawnAfterAd; i++)
+            {
+                SpawnClone();
+            }
+
+            UpdateTotalHealth();
+            adButton.gameObject.SetActive(false);
+            pauseCanvas.gameObject.SetActive(false);
+        }
+    }
+
     private void MoveClones()
     {
         activeClones.RemoveAll(clone => clone == null);
