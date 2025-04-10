@@ -33,7 +33,6 @@ public class ZombieBoss : Zombie
         StartCoroutine(SmoothFill(health));
         if (health <= 0)
         {
-            Time.timeScale = 0;
             winCanvas.SetActive(true);
             Destroy(gameObject);
         }
