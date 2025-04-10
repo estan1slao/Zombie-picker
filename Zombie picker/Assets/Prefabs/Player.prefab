@@ -168,6 +168,7 @@ MonoBehaviour:
   currentGun: {fileID: 11400000, guid: 44485790785ef414a9d1df0333ccd086, type: 2}
   weaponSlot: {fileID: 9114524242161555382}
   pistol: {fileID: 11400000, guid: 44485790785ef414a9d1df0333ccd086, type: 2}
+  deadPrefab: {fileID: 1324605204897675422, guid: d9027138885077645ba200830c285459, type: 3}
   directionSmoothTime: 0.1
 --- !u!114 &8416208482297180728
 MonoBehaviour:

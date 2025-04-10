@@ -26,6 +26,9 @@ public class Zombie : MonoBehaviour
 
     private AudioSource audioSource;
     
+    [Header("Other")] 
+    public GameObject deadPrefab;
+    
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -135,6 +138,7 @@ public class Zombie : MonoBehaviour
         StartCoroutine(SmoothFill(health));
         if (health <= 0)
         {
+            Instantiate(deadPrefab, transform.position, Quaternion.Euler(0, 90, 0));
             Destroy(gameObject);
         }
     }

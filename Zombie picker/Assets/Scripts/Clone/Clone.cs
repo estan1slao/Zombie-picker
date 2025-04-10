@@ -27,6 +27,9 @@ public class Clone : MonoBehaviour
     private GameObject currentGunVisual;
 
     public GunData pistol;
+
+    [Header("Other")] 
+    public GameObject deadPrefab;
     
     public event Action OnHealthChanged;
     public event Action OnHealTriggered;
@@ -127,6 +130,7 @@ public class Clone : MonoBehaviour
     
     private void Die()
     {
+        Instantiate(deadPrefab, transform.position, Quaternion.Euler(0, -90, 0));
         Destroy(gameObject);
     }
     

@@ -601,6 +601,7 @@ MonoBehaviour:
   detectRange: 10
   healthBar: {fileID: 5492817373032441417}
   takeDamageSound: {fileID: 8300000, guid: f7cf094bbd392eb408c7001d920e04b9, type: 3}
+  deadPrefab: {fileID: 3793512583318095088, guid: e966bd0317294774b8aaad5b862380fc, type: 3}
 --- !u!82 &4552811768710036605
 AudioSource:
   m_ObjectHideFlags: 0

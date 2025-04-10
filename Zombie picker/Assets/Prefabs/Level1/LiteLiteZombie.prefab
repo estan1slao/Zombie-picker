@@ -423,7 +423,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100056, guid: 8c53cffd52097cf4582f0a090c9a833e, type: 3}
       propertyPath: m_Name
-      value: LiteZombie 1
+      value: LiteLiteZombie
       objectReference: {fileID: 0}
     - target: {fileID: 100056, guid: 8c53cffd52097cf4582f0a090c9a833e, type: 3}
       propertyPath: m_TagString
@@ -596,6 +596,7 @@ MonoBehaviour:
   detectRange: 10
   healthBar: {fileID: 6637994843245638389}
   takeDamageSound: {fileID: 8300000, guid: f7cf094bbd392eb408c7001d920e04b9, type: 3}
+  deadPrefab: {fileID: 3793512583318095088, guid: e966bd0317294774b8aaad5b862380fc, type: 3}
 --- !u!82 &-5627504509317867609
 AudioSource:
   m_ObjectHideFlags: 0

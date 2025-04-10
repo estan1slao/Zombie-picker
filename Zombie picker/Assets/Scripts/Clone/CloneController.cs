@@ -54,11 +54,11 @@ public class CloneController : MonoBehaviour
         if (count > activeClones.Count)
             count = activeClones.Count;
         
+        activeClones.RemoveAll(clone => clone == null);
+        
         for (var i = 0; i < count; i++)
             activeClones[i].TakeDamage(999999999f);
         
-        activeClones.RemoveAll(clone => clone == null);
-
         UpdateTotalHealth();
         
         Debug.Log($"destroyed {count}");
@@ -188,6 +188,8 @@ public class CloneController : MonoBehaviour
 
     private void HealTriggered()
     {
+        activeClones.RemoveAll(clone => clone == null);
+        
         foreach (var clone in activeClones)
         {
             clone.Heal();
